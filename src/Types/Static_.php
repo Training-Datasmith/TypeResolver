@@ -32,7 +32,7 @@ use function implode;
 final class Static_ implements Type
 {
     /** @var Type[] */
-    private $genericTypes;
+    private array $genericTypes;
 
     public function __construct(Type ...$genericTypes)
     {

@@ -14,7 +14,7 @@ use function implode;
 final class ObjectShape extends Object_ implements PseudoType
 {
     /** @var ObjectShapeItem[] */
-    private $items;
+    private array $items;
 
     public function __construct(ObjectShapeItem ...$items)
     {

@@ -30,8 +30,7 @@ use function strpos;
  */
 class Object_ implements Type
 {
-    /** @var Fqsen|null */
-    protected $fqsen;
+    protected ?\phpDocumentor\Reflection\Fqsen $fqsen;
 
     /**
      * Initializes this object with an optional FQSEN, if not provided this object is considered 'untyped'.
@@ -43,7 +42,7 @@ class Object_ implements Type
         if (strpos((string) $fqsen, '::') !== false || strpos((string) $fqsen, '()') !== false) {
             throw new InvalidArgumentException(
                 'Object types can only refer to a class, interface or trait but a method, function, constant or '
-                . 'property was received: ' . (string) $fqsen
+                . 'property was received: ' . $fqsen
             );
         }
 

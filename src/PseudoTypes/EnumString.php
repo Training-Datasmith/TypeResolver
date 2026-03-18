@@ -24,8 +24,7 @@ use phpDocumentor\Reflection\Types\String_;
  */
 final class EnumString extends String_ implements PseudoType
 {
-    /** @var Type|null */
-    private $genericType;
+    private ?\phpDocumentor\Reflection\Type $genericType;
 
     public function __construct(?Type $genericType = null)
     {
@@ -51,6 +50,6 @@ final class EnumString extends String_ implements PseudoType
             return 'enum-string';
         }
 
-        return 'enum-string<' . (string) $this->genericType . '>';
+        return 'enum-string<' . $this->genericType . '>';
     }
 }

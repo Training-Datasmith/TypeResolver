@@ -22,10 +22,8 @@ use function sprintf;
 /** @psalm-immutable */
 final class ConstExpression extends Mixed_ implements PseudoType
 {
-    /** @var Type */
-    private $owner;
-    /** @var string */
-    private $expression;
+    private \phpDocumentor\Reflection\Type $owner;
+    private string $expression;
 
     public function __construct(Type $owner, string $expression)
     {

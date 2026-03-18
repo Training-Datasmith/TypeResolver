@@ -24,8 +24,7 @@ use phpDocumentor\Reflection\Types\String_;
  */
 final class ClassString extends String_ implements PseudoType
 {
-    /** @var Type|null */
-    private $genericType;
+    private ?\phpDocumentor\Reflection\Type $genericType;
 
     public function __construct(?Type $genericType = null)
     {
@@ -51,6 +50,6 @@ final class ClassString extends String_ implements PseudoType
             return 'class-string';
         }
 
-        return 'class-string<' . (string) $this->genericType . '>';
+        return 'class-string<' . $this->genericType . '>';
     }
 }

@@ -26,8 +26,7 @@ use phpDocumentor\Reflection\Types\String_;
  */
 class PropertiesOf extends Array_ implements PseudoType
 {
-    /** @var Type */
-    protected $type;
+    protected \phpDocumentor\Reflection\Type $type;
 
     public function __construct(Type $type)
     {

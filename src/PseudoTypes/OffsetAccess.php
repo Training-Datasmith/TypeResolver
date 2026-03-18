@@ -26,10 +26,8 @@ use phpDocumentor\Reflection\Types\Nullable;
  */
 final class OffsetAccess extends Mixed_ implements PseudoType
 {
-    /** @var Type */
-    private $type;
-    /** @var Type */
-    private $offset;
+    private \phpDocumentor\Reflection\Type $type;
+    private \phpDocumentor\Reflection\Type $offset;
 
     public function __construct(Type $type, Type $offset)
     {

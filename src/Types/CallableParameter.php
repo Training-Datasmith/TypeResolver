@@ -23,20 +23,15 @@ use function trim;
  */
 final class CallableParameter
 {
-    /** @var Type */
-    private $type;
+    private \phpDocumentor\Reflection\Type $type;
 
-    /** @var bool */
-    private $isReference;
+    private bool $isReference;
 
-    /** @var bool */
-    private $isVariadic;
+    private bool $isVariadic;
 
-    /** @var bool */
-    private $isOptional;
+    private bool $isOptional;
 
-    /** @var string|null */
-    private $name;
+    private ?string $name;
 
     public function __construct(
         Type $type,

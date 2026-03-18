@@ -24,8 +24,7 @@ use phpDocumentor\Reflection\Types\Mixed_;
  */
 final class ValueOf extends Mixed_ implements PseudoType
 {
-    /** @var Type */
-    private $type;
+    private \phpDocumentor\Reflection\Type $type;
 
     public function __construct(Type $type)
     {

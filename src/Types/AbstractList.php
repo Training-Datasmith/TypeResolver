@@ -22,17 +22,13 @@ use phpDocumentor\Reflection\Type;
  */
 abstract class AbstractList implements Type
 {
-    /** @var Type|null */
-    protected $valueType;
+    protected ?\phpDocumentor\Reflection\Type $valueType;
 
-    /** @var Type|null */
-    protected $keyType;
+    protected ?\phpDocumentor\Reflection\Type $keyType;
 
-    /** @var Type */
-    protected $defaultKeyType;
+    protected \phpDocumentor\Reflection\Types\Compound $defaultKeyType;
 
-    /** @var Type */
-    protected $defaultValueType;
+    protected \phpDocumentor\Reflection\Types\Mixed_ $defaultValueType;
 
     /**
      * Initializes this representation of an array with the given Type.

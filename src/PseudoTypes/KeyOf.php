@@ -23,8 +23,7 @@ use phpDocumentor\Reflection\Type;
  */
 final class KeyOf extends ArrayKey implements PseudoType
 {
-    /** @var Type */
-    private $type;
+    private \phpDocumentor\Reflection\Type $type;
 
     public function __construct(Type $type)
     {

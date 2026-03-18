@@ -24,12 +24,10 @@ use function implode;
  */
 final class Callable_ implements Type
 {
-    /** @var string */
-    private $identifier;
-    /** @var Type|null */
-    private $returnType;
+    private string $identifier;
+    private ?\phpDocumentor\Reflection\Type $returnType;
     /** @var CallableParameter[] */
-    private $parameters;
+    private array $parameters;
 
     /**
      * @param CallableParameter[] $parameters
@@ -70,7 +68,7 @@ final class Callable_ implements Type
         }
 
         if ($this->returnType instanceof self) {
-            $returnType = '(' . (string) $this->returnType . ')';
+            $returnType = '(' . $this->returnType . ')';
         } else {
             $returnType = (string) $this->returnType;
         }

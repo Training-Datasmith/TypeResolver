@@ -27,7 +27,7 @@ use function implode;
 final class Self_ implements Type
 {
     /** @var Type[] */
-    private $genericTypes;
+    private array $genericTypes;
 
     public function __construct(Type ...$genericTypes)
     {

@@ -24,7 +24,7 @@ use function implode;
 class ArrayShape extends Array_ implements PseudoType
 {
     /** @var ArrayShapeItem[] */
-    private $items;
+    private array $items;
 
     public function __construct(ArrayShapeItem ...$items)
     {

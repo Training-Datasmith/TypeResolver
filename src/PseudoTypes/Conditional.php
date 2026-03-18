@@ -26,16 +26,11 @@ use function sprintf;
  */
 final class Conditional extends Mixed_ implements PseudoType
 {
-    /** @var bool */
-    private $negated;
-    /** @var Type */
-    private $subjectType;
-    /** @var Type */
-    private $targetType;
-    /** @var Type */
-    private $if;
-    /** @var Type */
-    private $else;
+    private bool $negated;
+    private \phpDocumentor\Reflection\Type $subjectType;
+    private \phpDocumentor\Reflection\Type $targetType;
+    private \phpDocumentor\Reflection\Type $if;
+    private \phpDocumentor\Reflection\Type $else;
 
     public function __construct(bool $negated, Type $subjectType, Type $targetType, Type $if, Type $else)
     {

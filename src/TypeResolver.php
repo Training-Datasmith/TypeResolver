@@ -146,7 +146,7 @@ final class TypeResolver
      * @var array<string, string> List of recognized keywords and unto which Value Object they map
      * @psalm-var array<string, class-string<Type>>
      */
-    private $keywords = [
+    private array $keywords = [
         'string' => String_::class,
         'class-string' => ClassString::class,
         'interface-string' => InterfaceString::class,
@@ -205,19 +205,16 @@ final class TypeResolver
 
     /**
      * @psalm-readonly
-     * @var FqsenResolver
      */
-    private $fqsenResolver;
+    private \phpDocumentor\Reflection\FqsenResolver $fqsenResolver;
     /**
      * @psalm-readonly
-     * @var TypeParser
      */
-    private $typeParser;
+    private \PHPStan\PhpDocParser\Parser\TypeParser $typeParser;
     /**
      * @psalm-readonly
-     * @var Lexer
      */
-    private $lexer;
+    private \PHPStan\PhpDocParser\Lexer\Lexer $lexer;
 
     /**
      * Initializes this TypeResolver with the means to create and resolve Fqsen objects.
@@ -294,13 +291,11 @@ final class TypeResolver
                     case ArrayShapeNode::KIND_ARRAY:
                         return new ArrayShape(
                             ...array_map(
-                                function (ArrayShapeItemNode $item) use ($context): ArrayShapeItem {
-                                    return new ArrayShapeItem(
-                                        $item->keyName !== null ? (string) $item->keyName : null,
-                                        $this->createType($item->valueType, $context),
-                                        $item->optional
-                                    );
-                                },
+                                fn(ArrayShapeItemNode $item): ArrayShapeItem => new ArrayShapeItem(
+                                    $item->keyName !== null ? (string) $item->keyName : null,
+                                    $this->createType($item->valueType, $context),
+                                    $item->optional
+                                ),
                                 $type->items
                             )
                         );
@@ -308,13 +303,11 @@ final class TypeResolver
                     case ArrayShapeNode::KIND_LIST:
                         return new ListShape(
                             ...array_map(
-                                function (ArrayShapeItemNode $item) use ($context): ListShapeItem {
-                                    return new ListShapeItem(
-                                        null,
-                                        $this->createType($item->valueType, $context),
-                                        $item->optional
-                                    );
-                                },
+                                fn(ArrayShapeItemNode $item): ListShapeItem => new ListShapeItem(
+                                    null,
+                                    $this->createType($item->valueType, $context),
+                                    $item->optional
+                                ),
                                 $type->items
                             )
                         );
@@ -325,13 +318,11 @@ final class TypeResolver
             case ObjectShapeNode::class:
                 return new ObjectShape(
                     ...array_map(
-                        function (ObjectShapeItemNode $item) use ($context): ObjectShapeItem {
-                            return new ObjectShapeItem(
-                                (string) $item->keyName,
-                                $this->createType($item->valueType, $context),
-                                $item->optional
-                            );
-                        },
+                        fn(ObjectShapeItemNode $item): ObjectShapeItem => new ObjectShapeItem(
+                            (string) $item->keyName,
+                            $this->createType($item->valueType, $context),
+                            $item->optional
+                        ),
                         $type->items
                     )
                 );
@@ -507,15 +498,13 @@ final class TypeResolver
         return new Callable_(
             (string) $type->identifier,
             array_map(
-                function (CallableTypeParameterNode $param) use ($context): CallableParameter {
-                    return new CallableParameter(
-                        $this->createType($param->type, $context),
-                        $param->parameterName !== '' ? trim($param->parameterName, '$') : null,
-                        $param->isReference,
-                        $param->isVariadic,
-                        $param->isOptional
-                    );
-                },
+                fn(CallableTypeParameterNode $param): CallableParameter => new CallableParameter(
+                    $this->createType($param->type, $context),
+                    $param->parameterName !== '' ? trim($param->parameterName, '$') : null,
+                    $param->isReference,
+                    $param->isVariadic,
+                    $param->isOptional
+                ),
                 $type->parameters
             ),
             $this->createType($type->returnType, $context)
@@ -683,9 +672,7 @@ final class TypeResolver
     private function createTypesByTypeNodes(array $nodes, Context $context): array
     {
         return array_map(
-            function (TypeNode $node) use ($context): Type {
-                return $this->createType($node, $context);
-            },
+            fn(TypeNode $node): Type => $this->createType($node, $context),
             $nodes
         );
     }

@@ -36,8 +36,7 @@ abstract class AggregatedType implements Type, IteratorAggregate
      */
     private $types = [];
 
-    /** @var string */
-    private $token;
+    private string $token;
 
     /**
      * @param array<Type> $types

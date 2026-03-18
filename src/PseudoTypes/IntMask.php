@@ -27,7 +27,7 @@ use function implode;
 final class IntMask extends Integer implements PseudoType
 {
     /** @var Type[] */
-    private $types;
+    private array $types;
 
     public function __construct(Type ...$types)
     {

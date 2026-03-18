@@ -27,7 +27,7 @@ use function implode;
 final class Generic extends Object_
 {
     /** @var Type[] */
-    private $types;
+    private array $types;
 
     /**
      * @param Type[] $types

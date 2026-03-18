@@ -24,8 +24,7 @@ use phpDocumentor\Reflection\Types\Integer;
  */
 final class IntMaskOf extends Integer implements PseudoType
 {
-    /** @var Type */
-    private $type;
+    private \phpDocumentor\Reflection\Type $type;
 
     public function __construct(Type $type)
     {
