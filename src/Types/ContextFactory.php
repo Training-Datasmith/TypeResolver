@@ -14,15 +14,6 @@ declare(strict_types=1);
 namespace phpDocumentor\Reflection\Types;
 
 use ArrayIterator;
-use InvalidArgumentException;
-use ReflectionClass;
-use ReflectionClassConstant;
-use ReflectionMethod;
-use ReflectionParameter;
-use ReflectionProperty;
-use Reflector;
-use RuntimeException;
-use UnexpectedValueException;
 
 use function define;
 use function defined;
@@ -30,15 +21,27 @@ use function file_exists;
 use function file_get_contents;
 use function get_class;
 use function in_array;
+
+use InvalidArgumentException;
+
 use function is_string;
+
+use ReflectionClass;
+
+use ReflectionClassConstant;
+use ReflectionMethod;
+use ReflectionParameter;
+use ReflectionProperty;
+use Reflector;
+use RuntimeException;
+
 use function strrpos;
 use function substr;
-use function token_get_all;
-use function trim;
 
 use const T_AS;
 use const T_CLASS;
 use const T_CURLY_OPEN;
+
 use const T_DOLLAR_OPEN_CURLY_BRACES;
 use const T_NAME_FULLY_QUALIFIED;
 use const T_NAME_QUALIFIED;
@@ -47,6 +50,11 @@ use const T_NS_SEPARATOR;
 use const T_STRING;
 use const T_TRAIT;
 use const T_USE;
+
+use function token_get_all;
+use function trim;
+
+use UnexpectedValueException;
 
 if (!defined('T_NAME_QUALIFIED')) {
     define('T_NAME_QUALIFIED', 10001);

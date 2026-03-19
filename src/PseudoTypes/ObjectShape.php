@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace phpDocumentor\Reflection\PseudoTypes;
 
+use function implode;
+
 use phpDocumentor\Reflection\PseudoType;
 use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Object_;
 
-use function implode;
+use phpDocumentor\Reflection\Types\Object_;
 
 /** @psalm-immutable */
 final class ObjectShape extends Object_ implements PseudoType

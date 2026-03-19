@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\Types\ContextFactory;

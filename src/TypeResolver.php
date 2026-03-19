@@ -13,7 +13,17 @@ declare(strict_types=1);
 
 namespace phpDocumentor\Reflection;
 
+use function array_key_exists;
+use function array_map;
+use function array_reverse;
+use function class_exists;
+use function class_implements;
+
 use Doctrine\Deprecations\Deprecation;
+
+use function get_class;
+use function in_array;
+
 use InvalidArgumentException;
 use phpDocumentor\Reflection\PseudoTypes\ArrayKey;
 use phpDocumentor\Reflection\PseudoTypes\ArrayShape;
@@ -116,6 +126,7 @@ use PHPStan\PhpDocParser\Ast\Type\OffsetAccessTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\ThisTypeNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\PhpDocParser\Ast\Type\UnionTypeNode;
+
 use PHPStan\PhpDocParser\Lexer\Lexer;
 use PHPStan\PhpDocParser\Parser\ConstExprParser;
 use PHPStan\PhpDocParser\Parser\ParserException;
@@ -124,13 +135,6 @@ use PHPStan\PhpDocParser\Parser\TypeParser;
 use PHPStan\PhpDocParser\ParserConfig;
 use RuntimeException;
 
-use function array_key_exists;
-use function array_map;
-use function array_reverse;
-use function class_exists;
-use function class_implements;
-use function get_class;
-use function in_array;
 use function sprintf;
 use function strpos;
 use function strtolower;
@@ -291,7 +295,7 @@ final class TypeResolver
                     case ArrayShapeNode::KIND_ARRAY:
                         return new ArrayShape(
                             ...array_map(
-                                fn(ArrayShapeItemNode $item): ArrayShapeItem => new ArrayShapeItem(
+                                fn (ArrayShapeItemNode $item): ArrayShapeItem => new ArrayShapeItem(
                                     $item->keyName !== null ? (string) $item->keyName : null,
                                     $this->createType($item->valueType, $context),
                                     $item->optional
@@ -303,7 +307,7 @@ final class TypeResolver
                     case ArrayShapeNode::KIND_LIST:
                         return new ListShape(
                             ...array_map(
-                                fn(ArrayShapeItemNode $item): ListShapeItem => new ListShapeItem(
+                                fn (ArrayShapeItemNode $item): ListShapeItem => new ListShapeItem(
                                     null,
                                     $this->createType($item->valueType, $context),
                                     $item->optional
@@ -315,10 +319,11 @@ final class TypeResolver
                     default:
                         throw new RuntimeException('Unsupported array shape kind');
                 }
+                // no break
             case ObjectShapeNode::class:
                 return new ObjectShape(
                     ...array_map(
-                        fn(ObjectShapeItemNode $item): ObjectShapeItem => new ObjectShapeItem(
+                        fn (ObjectShapeItemNode $item): ObjectShapeItem => new ObjectShapeItem(
                             (string) $item->keyName,
                             $this->createType($item->valueType, $context),
                             $item->optional
@@ -498,7 +503,7 @@ final class TypeResolver
         return new Callable_(
             (string) $type->identifier,
             array_map(
-                fn(CallableTypeParameterNode $param): CallableParameter => new CallableParameter(
+                fn (CallableTypeParameterNode $param): CallableParameter => new CallableParameter(
                     $this->createType($param->type, $context),
                     $param->parameterName !== '' ? trim($param->parameterName, '$') : null,
                     $param->isReference,
@@ -555,7 +560,7 @@ final class TypeResolver
             case $this->isPartialStructuralElementName($type):
                 return $this->resolveTypedObject($type, $context);
 
-            // @codeCoverageIgnoreStart
+                // @codeCoverageIgnoreStart
             default:
                 // I haven't got the foggiest how the logic would come here but added this as a defense.
                 throw new RuntimeException(
@@ -672,7 +677,7 @@ final class TypeResolver
     private function createTypesByTypeNodes(array $nodes, Context $context): array
     {
         return array_map(
-            fn(TypeNode $node): Type => $this->createType($node, $context),
+            fn (TypeNode $node): Type => $this->createType($node, $context),
             $nodes
         );
     }

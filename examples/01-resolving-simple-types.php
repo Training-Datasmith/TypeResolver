@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use phpDocumentor\Reflection\TypeResolver;
 
 require __DIR__ . '/../vendor/autoload.php';

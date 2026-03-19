@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of phpDocumentor.
  *
@@ -12,12 +13,14 @@ declare(strict_types=1);
 
 namespace phpDocumentor\Reflection\Types;
 
+use function array_key_exists;
+
 use ArrayIterator;
+
+use function implode;
+
 use IteratorAggregate;
 use phpDocumentor\Reflection\Type;
-
-use function array_key_exists;
-use function implode;
 
 /**
  * Base class for aggregated types like Compound and Intersection

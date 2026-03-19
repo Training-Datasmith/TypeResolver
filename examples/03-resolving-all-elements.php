@@ -1,7 +1,9 @@
 <?php
 
-use phpDocumentor\Reflection\Types\Context;
+declare(strict_types=1);
+
 use phpDocumentor\Reflection\FqsenResolver;
+use phpDocumentor\Reflection\Types\Context;
 
 require __DIR__ . '/../vendor/autoload.php';
 

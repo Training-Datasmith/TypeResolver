@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace phpDocumentor\Reflection\Types;
 
-use phpDocumentor\Reflection\Type;
-
 use function implode;
+
+use phpDocumentor\Reflection\Type;
 
 /**
  * Value Object representing a Callable type.

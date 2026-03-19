@@ -13,11 +13,12 @@ declare(strict_types=1);
 
 namespace phpDocumentor\Reflection;
 
+use function explode;
+use function implode;
+
 use InvalidArgumentException;
 use phpDocumentor\Reflection\Types\Context;
 
-use function explode;
-use function implode;
 use function strpos;
 
 /**

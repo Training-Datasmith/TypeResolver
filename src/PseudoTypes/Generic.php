@@ -13,11 +13,12 @@ declare(strict_types=1);
 
 namespace phpDocumentor\Reflection\PseudoTypes;
 
+use function implode;
+
 use phpDocumentor\Reflection\Fqsen;
 use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Object_;
 
-use function implode;
+use phpDocumentor\Reflection\Types\Object_;
 
 /**
  * Value Object representing a type with generics.

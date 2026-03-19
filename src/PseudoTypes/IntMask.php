@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of phpDocumentor.
  *
@@ -13,11 +14,12 @@ declare(strict_types=1);
 
 namespace phpDocumentor\Reflection\PseudoTypes;
 
+use function implode;
+
 use phpDocumentor\Reflection\PseudoType;
 use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Integer;
 
-use function implode;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * Value Object representing the `int-mask` type.

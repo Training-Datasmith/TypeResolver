@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace My\Example;
 
-use Mockery as m;
 use phpDocumentor\Reflection\Types;
 
 class Classy
