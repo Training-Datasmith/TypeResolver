@@ -5,8 +5,8 @@
     "license": "MIT",
     "authors": [
         {
-          "name": "Mike van Riel",
-          "email": "me@mikevanriel.com"
+            "name": "Mike van Riel",
+            "email": "me@mikevanriel.com"
         }
     ],
     "require": {
@@ -26,12 +26,15 @@
     },
     "autoload": {
         "psr-4": {
-            "phpDocumentor\\Reflection\\": "src"
+            "php_Documentor\\Reflection\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "phpDocumentor\\Reflection\\": ["tests/unit", "tests/benchmark"]
+            "php_Documentor\\Reflection\\": [
+                "tests/unit",
+                "tests/benchmark"
+            ]
         }
     },
     "extra": {
