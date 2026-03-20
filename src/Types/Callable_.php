@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,13 +9,10 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
-
-namespace phpDocumentor\Reflection\Types;
+namespace Php_Documentor\Reflection\Types;
 
 use function implode;
-
-use phpDocumentor\Reflection\Type;
-
+use Php_Documentor\Reflection\Type;
 /**
  * Value Object representing a Callable type.
  *
@@ -25,54 +21,44 @@ use phpDocumentor\Reflection\Type;
 final class Callable_ implements Type
 {
     private string $identifier;
-    private ?\phpDocumentor\Reflection\Type $returnType;
+    private ?\Php_Documentor\Reflection\Type $return_type;
     /** @var CallableParameter[] */
     private array $parameters;
-
     /**
      * @param CallableParameter[] $parameters
      */
-    public function __construct(
-        string $identifier = 'callable',
-        array $parameters = [],
-        ?Type $returnType = null
-    ) {
+    public function __construct(string $identifier = 'callable', array $parameters = [], ?Type $return_type = null)
+    {
         $this->identifier = $identifier;
         $this->parameters = $parameters;
-        $this->returnType = $returnType;
+        $this->return_type = $return_type;
     }
-
-    public function getIdentifier(): string
+    public function get_identifier(): string
     {
         return $this->identifier;
     }
-
     /** @return CallableParameter[] */
-    public function getParameters(): array
+    public function get_parameters(): array
     {
         return $this->parameters;
     }
-
-    public function getReturnType(): ?Type
+    public function get_return_type(): ?Type
     {
-        return $this->returnType;
+        return $this->return_type;
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
     public function __toString(): string
     {
-        if (!$this->parameters && $this->returnType === null) {
+        if (!$this->parameters && $this->return_type === null) {
             return $this->identifier;
         }
-
-        if ($this->returnType instanceof self) {
-            $returnType = '(' . $this->returnType . ')';
+        if ($this->return_type instanceof self) {
+            $return_type = '(' . $this->return_type . ')';
         } else {
-            $returnType = (string) $this->returnType;
+            $return_type = (string) $this->return_type;
         }
-
-        return $this->identifier . '(' . implode(', ', $this->parameters) . '): ' . $returnType;
+        return $this->identifier . '(' . implode(', ', $this->parameters) . '): ' . $return_type;
     }
 }

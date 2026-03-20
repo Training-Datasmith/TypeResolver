@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,46 +9,39 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\String_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\String_;
 /**
  * Value Object representing the type 'class-string'.
  *
  * @psalm-immutable
  */
-final class ClassString extends String_ implements PseudoType
+final class Class_String extends String_ implements Pseudo_Type
 {
-    private ?\phpDocumentor\Reflection\Type $genericType;
-
-    public function __construct(?Type $genericType = null)
+    private ?\Php_Documentor\Reflection\Type $generic_type;
+    public function __construct(?Type $generic_type = null)
     {
-        $this->genericType = $genericType;
+        $this->generic_type = $generic_type;
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new String_();
     }
-
-    public function getGenericType(): ?Type
+    public function get_generic_type(): ?Type
     {
-        return $this->genericType;
+        return $this->generic_type;
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
     public function __toString(): string
     {
-        if ($this->genericType === null) {
+        if ($this->generic_type === null) {
             return 'class-string';
         }
-
-        return 'class-string<' . $this->genericType . '>';
+        return 'class-string<' . $this->generic_type . '>';
     }
 }

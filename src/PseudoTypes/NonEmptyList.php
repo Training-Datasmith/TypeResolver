@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,40 +9,35 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Array_;
-use phpDocumentor\Reflection\Types\Integer;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Array_;
+use Php_Documentor\Reflection\Types\Integer;
 /**
  * Value Object representing the type 'non-empty-list'.
  *
  * @psalm-immutable
  */
-final class NonEmptyList extends Array_ implements PseudoType
+final class Non_Empty_List extends Array_ implements Pseudo_Type
 {
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
-        return new Array_($this->valueType, $this->keyType);
+        return new Array_($this->value_type, $this->key_type);
     }
-
-    public function __construct(?Type $valueType = null)
+    public function __construct(?Type $value_type = null)
     {
-        parent::__construct($valueType, new Integer());
+        parent::__construct($value_type, new Integer());
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
     public function __toString(): string
     {
-        if ($this->valueType === null) {
+        if ($this->value_type === null) {
             return 'non-empty-list';
         }
-
-        return 'non-empty-list<' . $this->valueType . '>';
+        return 'non-empty-list<' . $this->value_type . '>';
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,33 +9,29 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\AggregatedType;
-use phpDocumentor\Reflection\Types\Compound;
-use phpDocumentor\Reflection\Types\Integer;
-use phpDocumentor\Reflection\Types\String_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Aggregated_Type;
+use Php_Documentor\Reflection\Types\Compound;
+use Php_Documentor\Reflection\Types\Integer;
+use Php_Documentor\Reflection\Types\String_;
 /**
  * Value Object representing the type `array-key`.
  *
  * @psalm-immutable
  */
-class ArrayKey extends AggregatedType implements PseudoType
+class Array_Key extends Aggregated_Type implements Pseudo_Type
 {
     public function __construct()
     {
         parent::__construct([new String_(), new Integer()], '|');
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Compound([new String_(), new Integer()]);
     }
-
     public function __toString(): string
     {
         return 'array-key';

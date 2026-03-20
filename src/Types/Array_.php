@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,12 +9,10 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
-
-namespace phpDocumentor\Reflection\Types;
+namespace Php_Documentor\Reflection\Types;
 
 use function preg_match;
 use function substr;
-
 /**
  * Represents an array type as described in the PSR-5, the PHPDoc Standard.
  *
@@ -27,24 +24,20 @@ use function substr;
  *
  * @psalm-immutable
  */
-class Array_ extends AbstractList
+class Array_ extends Abstract_List
 {
     public function __toString(): string
     {
-        if ($this->valueType === null) {
+        if ($this->value_type === null) {
             return 'array';
         }
-
-        $valueTypeString = (string) $this->valueType;
-
-        if ($this->keyType) {
-            return 'array<' . $this->keyType . ', ' . $valueTypeString . '>';
+        $value_type_string = (string) $this->value_type;
+        if ($this->key_type) {
+            return 'array<' . $this->key_type . ', ' . $value_type_string . '>';
         }
-
-        if (!preg_match('/[^\w\\\\]/', $valueTypeString) || substr($valueTypeString, -2, 2) === '[]') {
-            return $valueTypeString . '[]';
+        if (!preg_match('/[^\w\\\\]/', $value_type_string) || substr($value_type_string, -2, 2) === '[]') {
+            return $value_type_string . '[]';
         }
-
-        return 'array<' . $valueTypeString . '>';
+        return 'array<' . $value_type_string . '>';
     }
 }

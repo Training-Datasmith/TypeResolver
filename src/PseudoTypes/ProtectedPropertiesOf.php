@@ -9,17 +9,15 @@
  *  @link      http://phpdoc.org
  *
  */
-
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
 /**
  * Value Object representing the `protected-properties-of` type.
  *
  * @psalm-immutable
  */
-final class ProtectedPropertiesOf extends PropertiesOf
+final class Protected_Properties_Of extends Properties_Of
 {
     public function __toString(): string
     {

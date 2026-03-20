@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,25 +9,22 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\String_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\String_;
 /**
  * Value Object representing the type 'html-escaped-string'.
  *
  * @psalm-immutable
  */
-final class HtmlEscapedString extends String_ implements PseudoType
+final class Html_Escaped_String extends String_ implements Pseudo_Type
 {
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new String_();
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */

@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,11 +9,9 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Types;
 
-namespace phpDocumentor\Reflection\Types;
-
-use phpDocumentor\Reflection\Type;
-
+use Php_Documentor\Reflection\Type;
 /**
  * Value Object representing a nullable type. The real type is wrapped.
  *
@@ -23,29 +20,26 @@ use phpDocumentor\Reflection\Type;
 final class Nullable implements Type
 {
     /** @var Type The actual type that is wrapped */
-    private \phpDocumentor\Reflection\Type $realType;
-
+    private \Php_Documentor\Reflection\Type $real_type;
     /**
      * Initialises this nullable type using the real type embedded
      */
-    public function __construct(Type $realType)
+    public function __construct(Type $real_type)
     {
-        $this->realType = $realType;
+        $this->real_type = $real_type;
     }
-
     /**
      * Provide access to the actual type directly, if needed.
      */
-    public function getActualType(): Type
+    public function get_actual_type(): Type
     {
-        return $this->realType;
+        return $this->real_type;
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
     public function __toString(): string
     {
-        return '?' . $this->realType->__toString();
+        return '?' . $this->real_type->__toString();
     }
 }

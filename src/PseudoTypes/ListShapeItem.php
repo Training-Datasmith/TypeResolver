@@ -1,9 +1,8 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-final class ListShapeItem extends ArrayShapeItem
+final class List_Shape_Item extends Array_Shape_Item
 {
 }

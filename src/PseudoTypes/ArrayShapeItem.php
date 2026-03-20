@@ -9,11 +9,9 @@
  *  @link      http://phpdoc.org
  *
  */
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-class ArrayShapeItem extends ShapeItem
+class Array_Shape_Item extends Shape_Item
 {
 }

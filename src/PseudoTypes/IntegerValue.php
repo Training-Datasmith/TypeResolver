@@ -9,35 +9,28 @@
  *  @link      http://phpdoc.org
  *
  */
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Integer;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Integer;
 /** @psalm-immutable */
-final class IntegerValue extends Integer implements PseudoType
+final class Integer_Value extends Integer implements Pseudo_Type
 {
     private int $value;
-
     public function __construct(int $value)
     {
         $this->value = $value;
     }
-
-    public function getValue(): int
+    public function get_value(): int
     {
         return $this->value;
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Integer();
     }
-
     public function __toString(): string
     {
         return (string) $this->value;

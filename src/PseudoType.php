@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,10 +9,9 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection;
 
-namespace phpDocumentor\Reflection;
-
-interface PseudoType extends Type
+interface Pseudo_Type extends Type
 {
-    public function underlyingType(): Type;
+    public function underlying_type(): Type;
 }

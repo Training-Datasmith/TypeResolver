@@ -1,16 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
 use function implode;
-
 /** @psalm-immutable */
-final class ListShape extends ArrayShape
+final class List_Shape extends Array_Shape
 {
     public function __toString(): string
     {
-        return 'list{' . implode(', ', $this->getItems()) . '}';
+        return 'list{' . implode(', ', $this->get_items()) . '}';
     }
 }

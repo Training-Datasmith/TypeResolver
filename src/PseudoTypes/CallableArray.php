@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,32 +9,28 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Array_;
-use phpDocumentor\Reflection\Types\Integer;
-use phpDocumentor\Reflection\Types\Mixed_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Array_;
+use Php_Documentor\Reflection\Types\Integer;
+use Php_Documentor\Reflection\Types\Mixed_;
 /**
  * Value Object representing the type 'callable-array'.
  *
  * @psalm-immutable
  */
-final class CallableArray extends Array_ implements PseudoType
+final class Callable_Array extends Array_ implements Pseudo_Type
 {
     public function __construct()
     {
         parent::__construct(new Mixed_(), new Integer());
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Array_(new Mixed_(), new Integer());
     }
-
     public function __toString(): string
     {
         return 'callable-array';

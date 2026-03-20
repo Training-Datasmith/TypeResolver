@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,60 +9,50 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Types;
 
-namespace phpDocumentor\Reflection\Types;
-
-use phpDocumentor\Reflection\Type;
-
+use Php_Documentor\Reflection\Type;
 /**
  * Represents a list of values. This is an abstract class for Array_ and List_.
  *
  * @psalm-immutable
  */
-abstract class AbstractList implements Type
+abstract class Abstract_List implements Type
 {
-    protected ?\phpDocumentor\Reflection\Type $valueType;
-
-    protected ?\phpDocumentor\Reflection\Type $keyType;
-
-    protected \phpDocumentor\Reflection\Types\Compound $defaultKeyType;
-
-    protected \phpDocumentor\Reflection\Types\Mixed_ $defaultValueType;
-
+    protected ?\Php_Documentor\Reflection\Type $value_type;
+    protected ?\Php_Documentor\Reflection\Type $key_type;
+    protected \Php_Documentor\Reflection\Types\Compound $default_key_type;
+    protected \Php_Documentor\Reflection\Types\Mixed_ $default_value_type;
     /**
      * Initializes this representation of an array with the given Type.
      */
-    public function __construct(?Type $valueType = null, ?Type $keyType = null)
+    public function __construct(?Type $value_type = null, ?Type $key_type = null)
     {
-        $this->defaultValueType = new Mixed_();
-        $this->valueType      = $valueType;
-        $this->defaultKeyType = new Compound([new String_(), new Integer()]);
-        $this->keyType        = $keyType;
+        $this->default_value_type = new Mixed_();
+        $this->value_type = $value_type;
+        $this->default_key_type = new Compound([new String_(), new Integer()]);
+        $this->key_type = $key_type;
     }
-
-    public function getOriginalKeyType(): ?Type
+    public function get_original_key_type(): ?Type
     {
-        return $this->keyType;
+        return $this->key_type;
     }
-
-    public function getOriginalValueType(): ?Type
+    public function get_original_value_type(): ?Type
     {
-        return $this->valueType;
+        return $this->value_type;
     }
-
     /**
      * Returns the type for the keys of this array.
      */
-    public function getKeyType(): Type
+    public function get_key_type(): Type
     {
-        return $this->keyType ?? $this->defaultKeyType;
+        return $this->key_type ?? $this->default_key_type;
     }
-
     /**
      * Returns the type for the values of this array.
      */
-    public function getValueType(): Type
+    public function get_value_type(): Type
     {
-        return $this->valueType ?? $this->defaultValueType;
+        return $this->value_type ?? $this->default_value_type;
     }
 }

@@ -1,40 +1,32 @@
 <?php
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
 use function implode;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-
-use phpDocumentor\Reflection\Types\Object_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Object_;
 /** @psalm-immutable */
-final class ObjectShape extends Object_ implements PseudoType
+final class Object_Shape extends Object_ implements Pseudo_Type
 {
     /** @var ObjectShapeItem[] */
     private array $items;
-
-    public function __construct(ObjectShapeItem ...$items)
+    public function __construct(Object_Shape_Item ...$items)
     {
         $this->items = $items;
     }
-
     /**
      * @return ObjectShapeItem[]
      */
-    public function getItems(): array
+    public function get_items(): array
     {
         return $this->items;
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Object_();
     }
-
     public function __toString(): string
     {
         return 'object{' . implode(', ', $this->items) . '}';

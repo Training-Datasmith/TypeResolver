@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,13 +9,10 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
-
-namespace phpDocumentor\Reflection\Types;
+namespace Php_Documentor\Reflection\Types;
 
 use function implode;
-
-use phpDocumentor\Reflection\Type;
-
+use Php_Documentor\Reflection\Type;
 /**
  * Value Object representing the 'self' type.
  *
@@ -27,30 +23,26 @@ use phpDocumentor\Reflection\Type;
 final class Self_ implements Type
 {
     /** @var Type[] */
-    private array $genericTypes;
-
-    public function __construct(Type ...$genericTypes)
+    private array $generic_types;
+    public function __construct(Type ...$generic_types)
     {
-        $this->genericTypes = $genericTypes;
+        $this->generic_types = $generic_types;
     }
-
     /**
      * @return Type[]
      */
-    public function getGenericTypes(): array
+    public function get_generic_types(): array
     {
-        return $this->genericTypes;
+        return $this->generic_types;
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
     public function __toString(): string
     {
-        if ($this->genericTypes) {
-            return 'self<' . implode(', ', $this->genericTypes) . '>';
+        if ($this->generic_types) {
+            return 'self<' . implode(', ', $this->generic_types) . '>';
         }
-
         return 'self';
     }
 }

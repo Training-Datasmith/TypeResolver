@@ -8,13 +8,10 @@
  *
  *  @link      http://phpdoc.org
  */
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Types;
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\Types;
-
-use phpDocumentor\Reflection\Type;
-
+use Php_Documentor\Reflection\Type;
 /**
  * Value Object representing a Intersection Type.
  *
@@ -24,7 +21,7 @@ use phpDocumentor\Reflection\Type;
  *
  * @psalm-immutable
  */
-final class Intersection extends AggregatedType
+final class Intersection extends Aggregated_Type
 {
     /**
      * Initializes a intersection type (i.e. `\A&\B`) and tests if the provided types all implement the Type interface.

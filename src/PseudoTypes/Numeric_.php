@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,33 +9,29 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\AggregatedType;
-use phpDocumentor\Reflection\Types\Compound;
-use phpDocumentor\Reflection\Types\Float_;
-use phpDocumentor\Reflection\Types\Integer;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Aggregated_Type;
+use Php_Documentor\Reflection\Types\Compound;
+use Php_Documentor\Reflection\Types\Float_;
+use Php_Documentor\Reflection\Types\Integer;
 /**
  * Value Object representing the 'numeric' pseudo-type, which is either a numeric-string, integer or float.
  *
  * @psalm-immutable
  */
-final class Numeric_ extends AggregatedType implements PseudoType
+final class Numeric_ extends Aggregated_Type implements Pseudo_Type
 {
     public function __construct()
     {
-        AggregatedType::__construct([new NumericString(), new Integer(), new Float_()], '|');
+        Aggregated_Type::__construct([new Numeric_String(), new Integer(), new Float_()], '|');
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
-        return new Compound([new NumericString(), new Integer(), new Float_()]);
+        return new Compound([new Numeric_String(), new Integer(), new Float_()]);
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */

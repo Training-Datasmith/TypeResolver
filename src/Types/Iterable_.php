@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,29 +9,26 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
-
-namespace phpDocumentor\Reflection\Types;
+namespace Php_Documentor\Reflection\Types;
 
 /**
  * Value Object representing iterable type
  *
  * @psalm-immutable
  */
-final class Iterable_ extends AbstractList
+final class Iterable_ extends Abstract_List
 {
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
     public function __toString(): string
     {
-        if ($this->valueType === null) {
+        if ($this->value_type === null) {
             return 'iterable';
         }
-
-        if ($this->keyType) {
-            return 'iterable<' . $this->keyType . ', ' . $this->valueType . '>';
+        if ($this->key_type) {
+            return 'iterable<' . $this->key_type . ', ' . $this->value_type . '>';
         }
-
-        return 'iterable<' . $this->valueType . '>';
+        return 'iterable<' . $this->value_type . '>';
     }
 }

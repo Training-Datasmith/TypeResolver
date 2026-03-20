@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,29 +9,26 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Boolean;
-use phpDocumentor\Reflection\Types\Compound;
-use phpDocumentor\Reflection\Types\Float_;
-use phpDocumentor\Reflection\Types\Integer;
-use phpDocumentor\Reflection\Types\String_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Boolean;
+use Php_Documentor\Reflection\Types\Compound;
+use Php_Documentor\Reflection\Types\Float_;
+use Php_Documentor\Reflection\Types\Integer;
+use Php_Documentor\Reflection\Types\String_;
 /**
  * Value Object representing the 'scalar' pseudo-type, which is either a string, integer, float or boolean.
  *
  * @psalm-immutable
  */
-final class Scalar implements PseudoType
+final class Scalar implements Pseudo_Type
 {
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Compound([new String_(), new Integer(), new Float_(), new Boolean()]);
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */

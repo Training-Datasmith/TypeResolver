@@ -9,58 +9,45 @@
  *  @link      http://phpdoc.org
  *
  */
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Callable_;
-use phpDocumentor\Reflection\Types\Mixed_;
-use phpDocumentor\Reflection\Types\Nullable;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Callable_;
+use Php_Documentor\Reflection\Types\Mixed_;
+use Php_Documentor\Reflection\Types\Nullable;
 /**
  * Value Object representing the offset access type.
  *
  * @psalm-immutable
  */
-final class OffsetAccess extends Mixed_ implements PseudoType
+final class Offset_Access extends Mixed_ implements Pseudo_Type
 {
-    private \phpDocumentor\Reflection\Type $type;
-    private \phpDocumentor\Reflection\Type $offset;
-
+    private \Php_Documentor\Reflection\Type $type;
+    private \Php_Documentor\Reflection\Type $offset;
     public function __construct(Type $type, Type $offset)
     {
         $this->type = $type;
         $this->offset = $offset;
     }
-
-    public function getType(): Type
+    public function get_type(): Type
     {
         return $this->type;
     }
-
-    public function getOffset(): Type
+    public function get_offset(): Type
     {
         return $this->offset;
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Mixed_();
     }
-
     public function __toString(): string
     {
-        if (
-            $this->type instanceof Callable_
-            || $this->type instanceof ConstExpression
-            || $this->type instanceof Nullable
-        ) {
+        if ($this->type instanceof Callable_ || $this->type instanceof Const_Expression || $this->type instanceof Nullable) {
             return '(' . $this->type . ')[' . $this->offset . ']';
         }
-
         return $this->type . '[' . $this->offset . ']';
     }
 }

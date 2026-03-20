@@ -9,35 +9,28 @@
  *  @link      http://phpdoc.org
  *
  */
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Float_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Float_;
 /** @psalm-immutable */
-class FloatValue extends Float_ implements PseudoType
+class Float_Value extends Float_ implements Pseudo_Type
 {
     private float $value;
-
     public function __construct(float $value)
     {
         $this->value = $value;
     }
-
-    public function getValue(): float
+    public function get_value(): float
     {
         return $this->value;
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Float_();
     }
-
     public function __toString(): string
     {
         return (string) $this->value;

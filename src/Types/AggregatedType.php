@@ -8,20 +8,14 @@
  *
  * @link      http://phpdoc.org
  */
-
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\Types;
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Types;
 
 use function array_key_exists;
-
 use ArrayIterator;
-
 use function implode;
-
 use IteratorAggregate;
-use phpDocumentor\Reflection\Type;
-
+use Php_Documentor\Reflection\Type;
 /**
  * Base class for aggregated types like Compound and Intersection
  *
@@ -31,16 +25,14 @@ use phpDocumentor\Reflection\Type;
  * @psalm-immutable
  * @template-implements IteratorAggregate<int, Type>
  */
-abstract class AggregatedType implements Type, IteratorAggregate
+abstract class Aggregated_Type implements Type, IteratorAggregate
 {
     /**
      * @psalm-allow-private-mutation
      * @var array<int, Type>
      */
     private $types = [];
-
     private string $token;
-
     /**
      * @param array<Type> $types
      */
@@ -49,10 +41,8 @@ abstract class AggregatedType implements Type, IteratorAggregate
         foreach ($types as $type) {
             $this->add($type);
         }
-
         $this->token = $token;
     }
-
     /**
      * Returns the type at the given index.
      */
@@ -61,10 +51,8 @@ abstract class AggregatedType implements Type, IteratorAggregate
         if (!$this->has($index)) {
             return null;
         }
-
         return $this->types[$index];
     }
-
     /**
      * Tests if this compound type has a type with the given index.
      */
@@ -72,22 +60,19 @@ abstract class AggregatedType implements Type, IteratorAggregate
     {
         return array_key_exists($index, $this->types);
     }
-
     /**
      * Tests if this compound type contains the given type.
      */
     public function contains(Type $type): bool
     {
-        foreach ($this->types as $typePart) {
+        foreach ($this->types as $type_part) {
             // if the type is duplicate; do not add it
-            if ((string) $typePart === (string) $type) {
+            if ((string) $type_part === (string) $type) {
                 return true;
             }
         }
-
         return false;
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
@@ -95,7 +80,6 @@ abstract class AggregatedType implements Type, IteratorAggregate
     {
         return implode($this->token, $this->types);
     }
-
     /**
      * @return ArrayIterator<int, Type>
      */
@@ -103,25 +87,21 @@ abstract class AggregatedType implements Type, IteratorAggregate
     {
         return new ArrayIterator($this->types);
     }
-
     /**
      * @psalm-suppress ImpureMethodCall
      */
     private function add(Type $type): void
     {
         if ($type instanceof static) {
-            foreach ($type->getIterator() as $subType) {
-                $this->add($subType);
+            foreach ($type->getIterator() as $sub_type) {
+                $this->add($sub_type);
             }
-
             return;
         }
-
         // if the type is duplicate; do not add it
         if ($this->contains($type)) {
             return;
         }
-
         $this->types[] = $type;
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,25 +9,22 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Resource_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Resource_;
 /**
  * Value Object representing the type 'closed-resource'.
  *
  * @psalm-immutable
  */
-final class ClosedResource extends Resource_ implements PseudoType
+final class Closed_Resource extends Resource_ implements Pseudo_Type
 {
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Resource_();
     }
-
     public function __toString(): string
     {
         return 'closed-resource';

@@ -9,39 +9,32 @@
  *  @link      http://phpdoc.org
  *
  */
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Mixed_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Mixed_;
 /**
  * Value Object representing the `value-of` type.
  *
  * @psalm-immutable
  */
-final class ValueOf extends Mixed_ implements PseudoType
+final class Value_Of extends Mixed_ implements Pseudo_Type
 {
-    private \phpDocumentor\Reflection\Type $type;
-
+    private \Php_Documentor\Reflection\Type $type;
     public function __construct(Type $type)
     {
         $this->type = $type;
     }
-
-    public function getType(): Type
+    public function get_type(): Type
     {
         return $this->type;
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
         return new Mixed_();
     }
-
     public function __toString(): string
     {
         return 'value-of<' . $this->type . '>';

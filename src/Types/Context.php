@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,13 +9,11 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
-
-namespace phpDocumentor\Reflection\Types;
+namespace Php_Documentor\Reflection\Types;
 
 use function strlen;
 use function substr;
 use function trim;
-
 /**
  * Provides information about the Context in which the DocBlock occurs that receives this context.
  *
@@ -37,13 +34,11 @@ final class Context
 {
     /** @var string The current namespace. */
     private string $namespace;
-
     /**
      * @var string[] List of namespace aliases => Fully Qualified Namespace.
      * @psalm-var array<string, string>
      */
-    private array $namespaceAliases;
-
+    private array $namespace_aliases;
     /**
      * Initializes the new context and normalizes all passed namespaces to be in Qualified Namespace Name (QNN)
      * format (without a preceding `\`).
@@ -52,35 +47,27 @@ final class Context
      * @param string[] $namespaceAliases List of namespace aliases => Fully Qualified Namespace.
      * @psalm-param array<string, string> $namespaceAliases
      */
-    public function __construct(string $namespace, array $namespaceAliases = [])
+    public function __construct(string $namespace, array $namespace_aliases = [])
     {
-        $this->namespace = $namespace !== 'global' && $namespace !== 'default'
-            ? trim($namespace, '\\')
-            : '';
-
-        foreach ($namespaceAliases as $alias => $fqnn) {
+        $this->namespace = $namespace !== 'global' && $namespace !== 'default' ? trim($namespace, '\\') : '';
+        foreach ($namespace_aliases as $alias => $fqnn) {
             if ($fqnn[0] === '\\') {
                 $fqnn = substr($fqnn, 1);
             }
-
             if ($fqnn[strlen($fqnn) - 1] === '\\') {
                 $fqnn = substr($fqnn, 0, -1);
             }
-
-            $namespaceAliases[$alias] = $fqnn;
+            $namespace_aliases[$alias] = $fqnn;
         }
-
-        $this->namespaceAliases = $namespaceAliases;
+        $this->namespace_aliases = $namespace_aliases;
     }
-
     /**
      * Returns the Qualified Namespace Name (thus without `\` in front) where the associated element is in.
      */
-    public function getNamespace(): string
+    public function get_namespace(): string
     {
         return $this->namespace;
     }
-
     /**
      * Returns a list of Qualified Namespace Names (thus without `\` in front) that are imported, the keys represent
      * the alias for the imported Namespace.
@@ -88,8 +75,8 @@ final class Context
      * @return string[]
      * @psalm-return array<string, string>
      */
-    public function getNamespaceAliases(): array
+    public function get_namespace_aliases(): array
     {
-        return $this->namespaceAliases;
+        return $this->namespace_aliases;
     }
 }

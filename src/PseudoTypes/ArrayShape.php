@@ -9,45 +9,35 @@
  *  @link      http://phpdoc.org
  *
  */
-
-declare(strict_types=1);
-
-namespace phpDocumentor\Reflection\PseudoTypes;
+declare (strict_types=1);
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
 use function implode;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Array_;
-
-use phpDocumentor\Reflection\Types\Mixed_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Array_;
+use Php_Documentor\Reflection\Types\Mixed_;
 /** @psalm-immutable */
-class ArrayShape extends Array_ implements PseudoType
+class Array_Shape extends Array_ implements Pseudo_Type
 {
     /** @var ArrayShapeItem[] */
     private array $items;
-
-    public function __construct(ArrayShapeItem ...$items)
+    public function __construct(Array_Shape_Item ...$items)
     {
-        parent::__construct(new Mixed_(), new ArrayKey());
-
+        parent::__construct(new Mixed_(), new Array_Key());
         $this->items = $items;
     }
-
     /**
      * @return ArrayShapeItem[]
      */
-    public function getItems(): array
+    public function get_items(): array
     {
         return $this->items;
     }
-
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
-        return new Array_(new Mixed_(), new ArrayKey());
+        return new Array_(new Mixed_(), new Array_Key());
     }
-
     public function __toString(): string
     {
         return 'array{' . implode(', ', $this->items) . '}';

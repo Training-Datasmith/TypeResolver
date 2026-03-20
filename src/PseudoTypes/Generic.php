@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,16 +9,12 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
-
-namespace phpDocumentor\Reflection\PseudoTypes;
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
 use function implode;
-
-use phpDocumentor\Reflection\Fqsen;
-use phpDocumentor\Reflection\Type;
-
-use phpDocumentor\Reflection\Types\Object_;
-
+use Php_Documentor\Reflection\Fqsen;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Object_;
 /**
  * Value Object representing a type with generics.
  *
@@ -29,29 +24,24 @@ final class Generic extends Object_
 {
     /** @var Type[] */
     private array $types;
-
     /**
      * @param Type[] $types
      */
     public function __construct(?Fqsen $fqsen, array $types)
     {
         parent::__construct($fqsen);
-
         $this->types = $types;
     }
-
     /**
      * @return Type[]
      */
-    public function getTypes(): array
+    public function get_types(): array
     {
         return $this->types;
     }
-
     public function __toString(): string
     {
-        $objectType = (string) ($this->fqsen ?? 'object');
-
-        return $objectType . '<' . implode(', ', $this->types) . '>';
+        $object_type = (string) ($this->fqsen ?? 'object');
+        return $object_type . '<' . implode(', ', $this->types) . '>';
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
+declare (strict_types=1);
 /**
  * This file is part of phpDocumentor.
  *
@@ -10,38 +9,33 @@ declare(strict_types=1);
  *
  * @link      http://phpdoc.org
  */
+namespace Php_Documentor\Reflection\Pseudo_Types;
 
-namespace phpDocumentor\Reflection\PseudoTypes;
-
-use phpDocumentor\Reflection\PseudoType;
-use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Array_;
-
+use Php_Documentor\Reflection\Pseudo_Type;
+use Php_Documentor\Reflection\Type;
+use Php_Documentor\Reflection\Types\Array_;
 /**
  * Value Object representing the type 'non-empty-array'.
  *
  * @psalm-immutable
  */
-final class NonEmptyArray extends Array_ implements PseudoType
+final class Non_Empty_Array extends Array_ implements Pseudo_Type
 {
-    public function underlyingType(): Type
+    public function underlying_type(): Type
     {
-        return new Array_($this->valueType, $this->keyType);
+        return new Array_($this->value_type, $this->key_type);
     }
-
     /**
      * Returns a rendered output of the Type as it would be used in a DocBlock.
      */
     public function __toString(): string
     {
-        if ($this->valueType === null) {
+        if ($this->value_type === null) {
             return 'non-empty-array';
         }
-
-        if ($this->keyType) {
-            return 'non-empty-array<' . $this->keyType . ', ' . $this->valueType . '>';
+        if ($this->key_type) {
+            return 'non-empty-array<' . $this->key_type . ', ' . $this->value_type . '>';
         }
-
-        return 'non-empty-array<' . $this->valueType . '>';
+        return 'non-empty-array<' . $this->value_type . '>';
     }
 }
